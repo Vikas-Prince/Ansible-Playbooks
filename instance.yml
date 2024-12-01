@@ -47,4 +47,14 @@
       debug:
         var: ec2_instance
 
-   
+    - name: "Set private IP fact"
+      set_fact:
+        private_ips: "{{ ec2_instance.results | map(attribute='instances') | map(attribute='0.network_interfaces') | map(attribute='0.private_ip_address') | list }}"
+
+    - name: "Debug private IPs"
+      debug:
+        var: private_ips
+
+    - template:
+        src: inventory.j2
+        dest: inventory
