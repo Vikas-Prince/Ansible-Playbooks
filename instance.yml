@@ -22,9 +22,9 @@
         instance_type: "{{ instance_type }}"
         vpc_subnet_id: "{{ item.subnet }}"
         key_name: "{{ key_pair }}"
-        network:
-          security_groups: "{{ item.security_group }}"
-          assign_public_ip: "{{ True if item.name == 'Jump-server' else False }}"
+        security_group: "{{ item.security_group }}"
+        network_interfaces:
+          - assign_public_ip: "{{ True if item.name == 'Jump-server' else False }}"
       loop:
         - {
             name: "Jump-server",
