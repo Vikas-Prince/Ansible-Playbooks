@@ -27,6 +27,43 @@ The architecture consists of:
 4. **AWS Security Groups**: Fine-grained access control between the bastion host and private instances.
 5. **Ansible**: Used for provisioning, configuring the web servers, deploying portfolio and managing infrastructure as code.
 
+## Role Structure
+
+Ansible_AWS_Automation/
+├── playbooks/
+│   ├── create_instance.yml
+│   ├── webserver.yml
+│   └── haproxy.yml
+├── roles/
+│   ├── instance_creation/
+│   │   ├── tasks/
+│   │   │   └── main.yml
+│   │   ├── templates/
+│   │   │   └── inventory.j2
+│   │   └── vars/
+│   │       ├── aws_creds.yml
+│   │       └── instance_vars.yml
+│   ├── webserver_configuration/
+│   │   ├── handlers/
+│   │   │   └── main.yml
+│   │   └── tasks/
+│   │       └── main.yml
+│   └── haproxy_configuration/
+│       ├── handlers/
+│       │   └── main.yml
+│       ├── tasks/
+│       │   └── main.yml
+│       ├── templates/
+│       │   └── haproxy.cfg.j2
+│       └── vars/
+│           └── main.yml
+├── inventory/
+│   ├── inventory.ini
+│   └── key.pem
+├── ansible.cfg
+└── README.md
+
+
 ## Prerequisites
 
 Before you begin, ensure you have the following:
