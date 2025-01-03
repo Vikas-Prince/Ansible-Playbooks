@@ -1,0 +1,59 @@
+- name: "Install Pip Package"
+  package:
+    name: python3-pip
+    state: present
+
+- name: "Install boto3 library"
+  pip:
+    name: boto3
+
+- name: "Create a Jump Server"
+  community.aws.ec2_instance:
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+    region: "{{ aws_region }}"
+    name: "{{ item.name }}"
+    image_id: "{{ image_id }}"
+    instance_type: "{{ instance_type }}"
+    vpc_subnet_id: "{{ item.subnet }}"
+    key_name: "{{ key_pair }}"
+    security_group: "{{ item.security_group }}"
+    network_interfaces:
+      - assign_public_ip: "{{ True if item.name == 'Jump-server' else False }}"
+  loop:
+    - {
+        name: "Jump-server",
+        security_group: "{{ jump_security_group }}",
+        subnet: "{{ jump_subnet_id }}",
+      }
+    - {
+        name: "Private_instance-1",
+        security_group: "{{ private_security_group }}",
+        subnet: "{{ private_subnet_id }}",
+      }
+    - {
+        name: "Private_instance-2",
+        security_group: "{{ private_security_group }}",
+        subnet: "{{ private_subnet_id }}",
+      }
+  register: ec2_instance
+
+- name: "Debug ec2_instance content"
+  debug:
+    var: ec2_instance
+
+- name: "Set private IP fact"
+  set_fact:
+    private_ips: "{{ ec2_instance.results | map(attribute='instances') | map(attribute='0.network_interfaces') | map(attribute='0.private_ip_address') | list }}"
+
+- name: "Debug private IPs"
+  debug:
+    var: private_ips
+
+- template:
+    src: ../templates/inventory.j2
+    dest: ../inventory.ini
+
+- template:
+    src: ../templates/haproxy.cfg.j2
+    dest: ../files/haproxy.cfg
