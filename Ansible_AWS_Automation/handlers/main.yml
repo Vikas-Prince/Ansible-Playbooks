@@ -1,0 +1,9 @@
+- name: "restart firewalld"
+  service:
+    command: firewall-cmd --reload
+
+- name: "restart haproxy"
+  service:
+    name: haproxy
+    state: restarted
+    enabled: yes
