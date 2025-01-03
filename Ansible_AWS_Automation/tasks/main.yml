@@ -1,0 +1,17 @@
+- name: Create EC2-instances on Localhost
+  include_tasks: ec2-instance.yml
+  when: ansible_hostname == 'localhost'
+  delegate_to: localhost
+
+- name: Install Web Server on Private Instances
+  include_tasks: webserver.yml
+  when: inventory_hostname in groups['WebServers']
+  vars:
+    packages:
+      - httpd
+      - git
+      - firewalld
+
+- name: Install HAProxy on Bastion Host
+  include_tasks: haproxy.yml
+  when: inventory_hostname in groups['bastion']
