@@ -29,6 +29,7 @@ The architecture consists of:
 
 ## Role Structure
 
+```bash
 Ansible_AWS_Automation/
 ├── playbooks/
 │   ├── create_instance.yml
@@ -62,7 +63,7 @@ Ansible_AWS_Automation/
 │   └── key.pem
 ├── ansible.cfg
 └── README.md
-
+```
 
 ## Prerequisites
 
