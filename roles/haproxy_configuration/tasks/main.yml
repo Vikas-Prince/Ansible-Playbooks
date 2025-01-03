@@ -12,7 +12,7 @@
 
 - name: "Copy HAproxy configuration file from template"
   copy:
-    src: files/haproxy.cfg
+    src: ../vars/haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg
   notify:
     - restart haproxy

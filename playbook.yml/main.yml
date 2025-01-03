@@ -1,7 +1,0 @@
-- hosts: all
-  become: true
-  vars_file:
-    - aws_creds.yml
-    - instance_vars.yml
-  tasks:
-    - Ansible_AWS_Automation

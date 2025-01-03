@@ -1,0 +1,9 @@
+- hosts: WebServers
+  become: true
+  vars:
+    packages:
+      - httpd
+      - git
+      - firewalld
+  roles:
+    - role: roles/webserver.yml

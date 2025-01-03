@@ -52,8 +52,8 @@
 
 - template:
     src: ../templates/inventory.j2
-    dest: ../inventory.ini
+    dest: ../../../inventory/inventory.ini
 
 - template:
     src: ../templates/haproxy.cfg.j2
-    dest: ../files/haproxy.cfg
+    dest: ../../haproxy_configuration/vars/haproxy.cfg
