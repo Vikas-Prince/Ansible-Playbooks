@@ -1,0 +1,8 @@
+aws_region: "ap-south-1"
+image_id: "ami-0fd05997b4dff7aac"
+instance_type: "t2.micro"
+key_pair: Ansible
+jump_subnet_id: subnet-03453dd28c3d2b8cc
+private_subnet_id: subnet-0b611ec3cfe963ce4
+jump_security_group: Jump-Server-SG
+private_security_group: Private_Instance-DG
