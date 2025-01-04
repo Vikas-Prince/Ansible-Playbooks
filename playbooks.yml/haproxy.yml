@@ -1,5 +1,5 @@
 - hosts: bastion
   become: true
   roles:
-    - role: roles/haproxy_configuration
+    - role: ../roles/haproxy_configuration
     

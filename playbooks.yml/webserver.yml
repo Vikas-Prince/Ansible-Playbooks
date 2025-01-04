@@ -6,4 +6,4 @@
       - git
       - firewalld
   roles:
-    - role: roles/webserver.yml
+    - role: ../roles/webserver_configuration

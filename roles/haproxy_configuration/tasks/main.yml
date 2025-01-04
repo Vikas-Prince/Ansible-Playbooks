@@ -2,12 +2,11 @@
   package:
     name: haproxy
     state: present
-    enabled: yes
 
 - name: "Start HAproxy Service"
   service:
     name: haproxy
-    state: start
+    state: started
     enabled: yes
 
 - name: "Copy HAproxy configuration file from template"
