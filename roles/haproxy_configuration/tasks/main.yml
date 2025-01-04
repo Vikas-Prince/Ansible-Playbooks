@@ -13,5 +13,5 @@
   copy:
     src: ../vars/haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg
-  notify:
-    - restart haproxy
+  #notify:
+   # - restart haproxy

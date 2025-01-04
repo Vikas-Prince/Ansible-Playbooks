@@ -8,24 +8,25 @@
   service:
     name: httpd
     state: started
-    enabled: true
+    enabled: yes
 
 - name: "Start firewalld"
   service:
     name: firewalld
-    state: enabled
+    state: started
+    enabled: yes
 
 - name: "Clone source code from github repository"
   git:
-    repo:
+    repo: https://github.com/Vikas-Prince/My-Portfolio.git
     dest: /var/www/html/
     clone: yes
     update: yes
 
 - name: "Open Port for Web Server"
-  firewalld:
+  ansible.posix.firewalld:
     port: 80/tcp
     state: enabled
-    permanent: true
+    permanent: yes
   notify:
     - restart firewalld

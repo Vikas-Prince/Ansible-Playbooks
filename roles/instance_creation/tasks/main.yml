@@ -52,8 +52,8 @@
 
 - template:
     src: ../templates/inventory.j2
-    dest: ../../inventory/inventory.ini
+    dest: /Ansible_AWS_Automation/inventory/inventory.ini
 
 - template:
-    src: ../haproxy_configuration/template/haproxy.cfg.j2
-    dest: ../haproxy_configuration/vars/haproxy.cfg
+    src: /Ansible_AWS_Automation/roles/haproxy_configuration/templates/haproxy.cfg.j2
+    dest: /Ansible_AWS_Automation/roles/haproxy_configuration/vars/haproxy.cfg
